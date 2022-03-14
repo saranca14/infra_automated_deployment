@@ -1,5 +1,5 @@
-module "networking" {
-  source    = "./modules/networking"
+module "network" {
+  source    = "./modules/network"
   namespace = var.namespace
 }
 
