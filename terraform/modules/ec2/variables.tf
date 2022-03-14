@@ -11,7 +11,3 @@ variable "vpc" {
 variable "sg_pub_id" {
   type = any
 }
-
-variable key_name {
-  type = string
-}
