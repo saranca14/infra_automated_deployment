@@ -22,3 +22,4 @@ resource "aws_instance" "ec2_public" {
   tags = {
     "Name" = "${var.namespace}-nginx_server"
   }
+}
