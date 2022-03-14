@@ -19,6 +19,10 @@ resource "aws_instance" "ec2_public" {
   subnet_id                   = var.vpc.public_subnets[0]
   vpc_security_group_ids      = [var.sg_pub_id]
 
+   provisioner "local-exec" {
+        command = "sleep 100; ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -u ubuntu --private-key ./aws_ec2_key.pem -i '${aws_instance.ec2_public.public_ip},' site.yml"
+    }
+
   tags = {
     "Name" = "${var.namespace}-nginx_server"
   }

@@ -1,0 +1,11 @@
+- name: Create logrotate for container
+  shell: |
+    echo '/var/lib/docker/containers/*/*.log {
+    maxsize 100MB
+    rotate 7
+    daily
+    compress
+    missingok
+    delaycompress
+    copytruncate
+    }' > /etc/logrotate.d/docker-container
