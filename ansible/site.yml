@@ -2,14 +2,14 @@
 # This playbook sets up whole stack.
  
 - name: Configurations to "remote" host
-  hosts: remote
+  #hosts: remote
   remote_user: ubuntu # Remote user
   become: yes
   roles:
     - setup
  
 - name: Copying "docker" application folder on remote server
-  hosts: remote
+  #hosts: remote
   remote_user: ubuntu # Remote user
   become: yes
   roles:
@@ -17,7 +17,7 @@
 
 
 - name: Setting up logrotate for Nginx container
-  hosts: remote
+  #hosts: remote
   remote_user: ubuntu # Remote user
   become: yes
   roles:
