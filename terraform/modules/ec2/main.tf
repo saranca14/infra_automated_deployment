@@ -34,7 +34,7 @@ resource "aws_instance" "ec2_public" {
   ami                         = data.aws_ami.ubuntu.id
   associate_public_ip_address = true
   instance_type               = "t2.micro"
-  key_name                    = var.key_name
+  key_name                    = aws_key_pair.key_pair.key_name
   iam_instance_profile        = "ec2_admin_role"
   subnet_id                   = var.vpc.public_subnets[0]
   vpc_security_group_ids      = [var.sg_pub_id]
