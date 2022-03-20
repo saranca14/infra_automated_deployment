@@ -13,13 +13,13 @@ resource "aws_instance" "ec2_public" {
   ami                         = data.aws_ami.ubuntu.id
   associate_public_ip_address = true
   instance_type               = "t2.micro"
-  key_name                    = "aws_ec2_key"
+  key_name                    = var.key_name
   iam_instance_profile        = "ec2_admin_role"
   subnet_id                   = var.vpc.public_subnets[0]
   vpc_security_group_ids      = [var.sg_pub_id]
 
    provisioner "local-exec" {
-       command = "sleep 100; chmod 400 ./aws_ec2_key.pem; ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook --private-key ./aws_ec2_key.pem -i '${aws_instance.ec2_public.public_ip},' ../ansible/site.yml"
+       command = "ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -u ubuntu --private-key ~/.ssh/${var.key_name}.pem -i '${aws_instance.myWebOS.public_ip},' ../ansible/site.yml"
    }
 
   tags = {

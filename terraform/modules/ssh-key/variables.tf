@@ -4,3 +4,7 @@ variable "namespace" {
 }
 
 */
+variable "key_name" {
+  type = string
+  default = "aws_my_key"
+}
