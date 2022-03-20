@@ -24,6 +24,11 @@ resource "null_resource" "key-perm" {
   }
 }
 
+resource "aws_key_pair" "key_pair" {
+  key_name   = "${var.key_name}-key"
+  public_key = tls_private_key.ec2_private_key.public_key_openssh
+}
+
 // Configure the Nginx EC2 instance in a public subnet
 resource "aws_instance" "ec2_public" {
   ami                         = data.aws_ami.ubuntu.id
