@@ -40,7 +40,7 @@ resource "aws_instance" "ec2_public" {
   vpc_security_group_ids      = [var.sg_pub_id]
 
    provisioner "local-exec" {
-       command = "ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -u ubuntu --private-key ~/.ssh/${var.key_name}.pem -i ${aws_instance.ec2_public.public_ip}, ../ansible/site.yml"
+       command = "ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -u ubuntu --private-key ~/.ssh/${var.key_name}.pem -i ${aws_instance.ec2_public.public_ip} ../ansible/site.yml"
    }
 
   tags = {
