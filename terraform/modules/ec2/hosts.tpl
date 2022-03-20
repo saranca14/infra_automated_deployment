@@ -1,2 +1,2 @@
 [target]
-${ip}
+${server_ip}
